@@ -178,12 +178,13 @@ Manager of Flavoursomefreshfood
     """.format(fullname=fullname,phone=phone, email=email_address, no_adults=Adults, children=Children, checkin=Checkin,
                checkout=Checkout, food=DISH, link=cancel_link)
 
-    with app.open_resource("/home/mihlali/Documents/book-main/IMG-20210201-WA0016.jpg") as fp:
+    with app.open_resource("/home/mihlali/Documents/book-main/static/IMG-20210201-WA0016.jpg") as fp:
         msg.attach("IMG-20210201-WA0016.jpg", "image/jpg", fp.read())
-    with app.open_resource("/home/mihlali/Documents/book-main/Flavoursome.jpg") as fp:
+
+    with app.open_resource("/home/mihlali/Documents/book-main/static/Flavoursome.jpg") as fp:
         msg.attach("Flavoursome.jpg", "image/jpg", fp.read())
 
-    with app.open_resource("/home/mihlali/Documents/book-main/Menu.pdf") as fp:
+    with app.open_resource("/home/mihlali/Documents/book-main/static/Menu.pdf") as fp:
         msg.attach("Menu.pdf", "image/jpg", fp.read())
 
     mail.send(msg)
