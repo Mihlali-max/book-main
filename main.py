@@ -88,11 +88,12 @@ def add_users():
                     con.commit()
                     msg = fullname + " was added to the databases"
                     row_id = cursor.lastrowid
+
                     cancel_link = "{link}".format(
                         link="http://127.0.0.1:5000/delete/" + str(row_id) + "/")
-                    send_mail(fullname, email_address, Adults, Children, Checkin, Checkout, DISH ,phone,  cancel_link)
+                    send_mail(fullname, email_address, phone, Adults, Children, Checkin, Checkout, DISH, cancel_link)
 
-                    return jsonify(msg)
+                    return render_template('return.html')
         except Exception as e:
 
             con.rollback()
@@ -140,7 +141,7 @@ def index():
     return 'Sent'
 
 
-def send_mail(fullname, email_address,phone, Adults, Children, Checkin, Checkout, DISH,cancel_link):
+def send_mail(fullname, email_address, phone, Adults, Children, Checkin, Checkout, DISH,cancel_link):
     msg = Message(
         "Confirmation of booking",
         sender=email_address,
@@ -148,15 +149,15 @@ def send_mail(fullname, email_address,phone, Adults, Children, Checkin, Checkout
     )
     msg.body = """
 Hi {fullname},
-We are glad to hear that you are booking a table at Flavoursome for {no_adults} adults and {children} children
-on {checkin} :{checkout} it has been confirmed. For any changes please contact our customer service landline at 06670742917.
+We are glad to hear that you are booking a table at Flavoursome for {adults} adults and {children} children
+on {check_in} : it has been confirmed. For any changes please contact our customer service landline at 06670742917.
 
-                                           Your Reservation:
-                                           Name: {fullname}
-                                           Phone Number: {phone}
-                                           Email: {email}
-                                           Booking Date: {checkin}
-                                           Meal :{food}
+Your Reservation:
+Name: {fullname}
+Phone Number: {phone}
+Email: {email}
+Booking Date: {check_in}
+Meal :{meal}                                              
 
 We look forward to serving you, please don’t hesitate to contact us for any questions or
 concerns. If you want to cancel your reservation you can click this link {link} or call our reservation team at +276670742917
@@ -175,17 +176,14 @@ Sakhe Silwana
 Customer Service
 Manager of Flavoursomefreshfood
 
-    """.format(fullname=fullname,phone=phone, email=email_address, no_adults=Adults, children=Children, checkin=Checkin,
-               checkout=Checkout, food=DISH, link=cancel_link)
 
-    with app.open_resource("/home/mihlali/Documents/book-main/static/IMG-20210201-WA0016.jpg") as fp:
-        msg.attach("IMG-20210201-WA0016.jpg", "image/jpg", fp.read())
+    """.format(fullname=fullname, phone=phone, email=email_address, adults=Adults, children=Children, check_in=Checkin,
+               checkout=Checkout, meal=DISH, link=cancel_link)
 
-    with app.open_resource("/home/mihlali/Documents/book-main/static/Flavoursome.jpg") as fp:
-        msg.attach("Flavoursome.jpg", "image/jpg", fp.read())
 
-    with app.open_resource("/home/mihlali/Documents/book-main/static/Menu.pdf") as fp:
-        msg.attach("Menu.pdf", "image/jpg", fp.read())
+
+
+
 
     mail.send(msg)
 
@@ -204,7 +202,7 @@ def delete_user(user_id):
         msg = "Error occurred when deleting the user in the database: " + str(e)
     finally:
         con.close()
-        return jsonify(msg=msg)
+        return render_template('delete.html')
 
 
 if __name__ == '__main__':
