@@ -90,7 +90,7 @@ def add_users():
                     row_id = cursor.lastrowid
 
                     cancel_link = "{link}".format(
-                        link="http://127.0.0.1:5000/delete/" + str(row_id) + "/")
+                        link=" https://enigmatic-refuge-03809.herokuapp.com/delete/" + str(row_id) + "/")
                     send_mail(fullname, email_address, phone, Adults, Children, Checkin, Checkout, DISH, cancel_link)
 
                     return render_template('return.html')
