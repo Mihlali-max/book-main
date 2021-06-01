@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"><!-- Basic -->
+<html lang="en" xmlns:https="http://www.w3.org/1999/xhtml"><!-- Basic -->
 <head>
 	<meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -22,10 +22,19 @@
 	<!-- Site CSS -->
 
 
-	</header>
-	<!-- End header -->
+	<link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Tangerine">
+    <style>
+      body {
+        font-family: 'Tangerine', serif;
+        font-size: 30px;
+        text-shadow: 4px 4px 4px #aaa;
 
-	<!-- Start All Pages -->
+      }
+    </style>
+
+	</head>
+	<body>
 
 		<div class="container text-center">
 			<div class="row">
@@ -35,25 +44,16 @@
 					<br>
 					<br>
 
-					<h2 style="color: rgb(87, 87, 26); font-weight: bolder; font-family: Arial, Helvetica, sans-serif;" >Thanks for visiting Flavoursome website <h2> <br>
+					<h2 style="color: rgb(87, 87, 26); font-weight: bolder; font-family:'Tangerine', serif;" >Thanks for visiting Flavoursome website </h2> <br>
 					<h2>Your booking has been made please check your email for any modifications.</h2>
-				<br>
-			<a href="index.html" class="return"  style="border-radius: 20px;color: rgb(0, 0, 0); border: 2px;"> Back </i></a>
+						<br>
+
 				</div>
 			</div>
 		</div>
 	</div>
 
-<!--	{% extends 'flask_user/emails/base_message.html' %}-->
-
-<!--{% block message %}-->
-<!--<p>You will need to confirm your email to start using {{ app_name }}.</p>-->
-
-<!--<p>If you initiated this confirmation, please click on the link below:<br/>-->
-<!--&nbsp;&nbsp;&nbsp;&nbsp;<a href="{{ confirm_email_link }}">Confirm your email</a>.</p>-->
-
-<!--<p>If you did not initiate this confirmation, you may safely ignore this email.</p>-->
-
-<!--{% endblock %}-->
+<header/>
 </body>
+
 </html>
